@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
 
-export default function AddItemForm({ handleAddItem }) {
+export default function AddItemForm({ onAddItem }) {
   const [itemText, setItemText] = useState("");
   const inputRef = useRef();
 
@@ -13,8 +13,8 @@ export default function AddItemForm({ handleAddItem }) {
       alert("Item can't be empty");
       return;
     }
+    onAddItem(itemText);
 
-    handleAddItem(itemText);
     setItemText("");
   };
 
