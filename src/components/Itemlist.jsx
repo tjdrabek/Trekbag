@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { initialItems } from "../lib/constants";
-
 export default function Itemlist({
   items,
   handleDeleteItem,
@@ -12,26 +9,26 @@ export default function Itemlist({
         <Item
           key={item.id}
           item={item}
-          handleDeleteItem={handleDeleteItem}
-          handleToggleItem={handleToggleItem}
+          onDeleteItem={handleDeleteItem}
+          onToggleItem={handleToggleItem}
         />
       ))}
     </ul>
   );
 }
 
-function Item({ item, handleDeleteItem, handleToggleItem }) {
+function Item({ item, onDeleteItem, onToggleItem }) {
   return (
     <li className="item">
       <label>
         <input
-          onChange={() => handleToggleItem(item.id)}
+          onChange={() => onToggleItem(item.id)}
           checked={item.packed}
           type="checkbox"
         />
         {item.name}
       </label>
-      <button onClick={() => handleDeleteItem(item.id)}>❌</button>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
   );
 }
