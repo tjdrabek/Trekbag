@@ -17,5 +17,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
   },
 };
