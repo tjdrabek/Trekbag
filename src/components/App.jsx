@@ -4,11 +4,13 @@ import Header from "./Header";
 import Itemlist from "./Itemlist";
 import Sidebar from "./Sidebar";
 import "../index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { initialItems } from "../lib/constants";
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  const [items, setItems] = useState(
+    () => JSON.parse(localStorage.getItem("items")) || initialItems
+  );
 
   const handleAddItem = (newItemText) => {
     const newItem = {
@@ -52,6 +54,11 @@ function App() {
     const newItems = items.map((item) => ({ ...item, packed: false }));
     setItems(newItems);
   };
+
+  useEffect(() => {
+    console.log("setting local storage");
+    localStorage.setItem("items", JSON.stringify(items));
+  });
 
   return (
     <>
