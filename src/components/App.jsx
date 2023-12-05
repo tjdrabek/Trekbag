@@ -6,6 +6,10 @@ import Sidebar from "./Sidebar";
 import "../index.css";
 import { useEffect, useState } from "react";
 import { initialItems } from "../lib/constants";
+import Logo from "./Logo";
+import Counter from "./Counter";
+import AddItemForm from "./AddItemForm";
+import ButtonGroup from "./ButtonGroup";
 
 function App() {
   const [items, setItems] = useState(
@@ -64,22 +68,27 @@ function App() {
     <>
       <BackgroundHeading />
       <main>
-        <Header
-          numberOfItemsPacked={items.filter((item) => item.packed).length}
-          totalNumberOfItems={items.length}
-        />
+        <Header>
+          <Logo />
+          <Counter
+            numberOfItemsPacked={items.filter((item) => item.packed).length}
+            totalNumberOfItems={items.length}
+          />
+        </Header>
         <Itemlist
           items={items}
           handleDeleteItem={handleDeleteItem}
           handleToggleItem={handleToggleItem}
         />
-        <Sidebar
-          handleAddItem={handleAddItem}
-          handleRemoveAllItems={handleRemoveAllItems}
-          handleResetToInitial={handleResetToInitial}
-          handleMarkAllAsComplete={handleMarkAllAsComplete}
-          handleMarkAllAsIncomplete={handleMarkAllAsIncomplete}
-        />
+        <Sidebar>
+          <AddItemForm onAddItem={handleAddItem} />
+          <ButtonGroup
+            handleRemoveAllItems={handleRemoveAllItems}
+            handleResetToInitial={handleResetToInitial}
+            handleMarkAllAsComplete={handleMarkAllAsComplete}
+            handleMarkAllAsIncomplete={handleMarkAllAsIncomplete}
+          />
+        </Sidebar>
       </main>
       <Footer />
     </>
