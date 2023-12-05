@@ -4,6 +4,9 @@ import { useItemsContext } from "../lib/hooks";
 
 export default function Sidebar() {
   const { handleAddItem } = useItemsContext();
+
+  console.log("Sidebar rendering...");
+
   return (
     <div className="sidebar">
       <AddItemForm onAddItem={handleAddItem} />
